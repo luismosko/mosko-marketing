@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Política de Privacidade, Termos de Uso e Cookies — Mosko Marketing</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --black: #0d0d0d;
+  --dark: #1a1a1a;
+  --mid: #444;
+  --gray: #888;
+  --light-gray: #e8e8e8;
+  --bg: #f5f4f0;
+  --white: #ffffff;
+  --accent: #0a5cff;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--light-gray);
+  padding: 0 6%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--black);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+.logo span { color: var(--accent); }
+.nav-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-back:hover { color: var(--accent); }
+
+/* HERO */
+.page-hero {
+  background: var(--black);
+  padding: 8rem 6% 5rem;
+  margin-top: 68px;
+}
+.page-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #4f8ef7;
+  display: block;
+  margin-bottom: 1.2rem;
+}
+.page-title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 1.4rem;
+  max-width: 700px;
+}
+.page-subtitle {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.45);
+  max-width: 520px;
+  line-height: 1.7;
+}
+.page-meta {
+  margin-top: 2.5rem;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.meta-item {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.35);
+  font-weight: 500;
+}
+.meta-item strong { color: rgba(255,255,255,0.7); font-weight: 600; display: block; margin-bottom: 0.1rem; }
+
+/* TAB NAV */
+.tab-nav {
+  background: var(--bg);
+  border-bottom: 1px solid var(--light-gray);
+  padding: 0 6%;
+  display: flex;
+  gap: 0;
+  position: sticky;
+  top: 68px;
+  z-index: 100;
+}
+.tab-btn {
+  padding: 1.1rem 1.8rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--gray);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+}
+.tab-btn:hover { color: var(--black); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* LAYOUT */
+.content-wrap {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 6%;
+}
+
+/* SIDEBAR */
+.sidebar {
+  padding: 3rem 2rem 3rem 0;
+  position: sticky;
+  top: 128px;
+  height: fit-content;
+  border-right: 1px solid var(--light-gray);
+}
+
+.sidebar-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-bottom: 1rem;
+}
+
+.sidebar ul { list-style: none; display: flex; flex-direction: column; gap: 0.1rem; }
+.sidebar ul li a {
+  text-decoration: none;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: var(--mid);
+  display: block;
+  padding: 0.4rem 0.6rem;
+  border-radius: 4px;
+  transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+.sidebar ul li a:hover { color: var(--black); background: var(--bg); }
+.sidebar ul li a.active { color: var(--accent); border-left-color: var(--accent); background: rgba(10,92,255,0.05); }
+
+/* CONTENT */
+.content-main {
+  padding: 3rem 0 3rem 3rem;
+}
+
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* SECTION */
+.doc-section {
+  margin-bottom: 3.5rem;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid var(--light-gray);
+}
+.doc-section:last-child { border-bottom: none; margin-bottom: 0; }
+
+.section-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+  display: block;
+}
+
+.doc-section h2 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  color: var(--black);
+  margin-bottom: 1.2rem;
+}
+
+.doc-section h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--black);
+  margin: 1.8rem 0 0.6rem;
+}
+
+.doc-section p {
+  font-size: 0.92rem;
+  color: var(--mid);
+  line-height: 1.8;
+  margin-bottom: 0.9rem;
+}
+.doc-section p:last-child { margin-bottom: 0; }
+
+.doc-section ul, .doc-section ol {
+  padding-left: 0;
+  margin: 0.8rem 0 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.doc-section ul li, .doc-section ol li {
+  font-size: 0.92rem;
+  color: var(--mid);
+  line-height: 1.7;
+  padding-left: 1.4rem;
+  position: relative;
+  list-style: none;
+}
+.doc-section ul li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+  top: 0.15rem;
+}
+.doc-section ol { counter-reset: item; }
+.doc-section ol li { counter-increment: item; }
+.doc-section ol li::before {
+  content: counter(item) '.';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 700;
+  top: 0.05rem;
+}
+
+/* INFO BOX */
+.info-box {
+  background: rgba(10,92,255,0.05);
+  border: 1px solid rgba(10,92,255,0.15);
+  border-left: 3px solid var(--accent);
+  border-radius: 0 6px 6px 0;
+  padding: 1.2rem 1.4rem;
+  margin: 1.4rem 0;
+}
+.info-box p { font-size: 0.88rem; color: var(--dark); margin: 0; }
+.info-box strong { color: var(--accent); }
+
+/* WARNING BOX */
+.warn-box {
+  background: rgba(245,158,11,0.05);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-left: 3px solid #f59e0b;
+  border-radius: 0 6px 6px 0;
+  padding: 1.2rem 1.4rem;
+  margin: 1.4rem 0;
+}
+.warn-box p { font-size: 0.88rem; color: var(--dark); margin: 0; }
+
+/* TABLE */
+.doc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.2rem 0;
+  font-size: 0.86rem;
+}
+.doc-table th {
+  background: var(--bg);
+  font-weight: 700;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  padding: 0.9rem 1rem;
+  text-align: left;
+  border-bottom: 2px solid var(--light-gray);
+}
+.doc-table td {
+  padding: 0.8rem 1rem;
+  border-bottom: 1px solid var(--light-gray);
+  color: var(--mid);
+  line-height: 1.5;
+  vertical-align: top;
+}
+.doc-table tr:last-child td { border-bottom: none; }
+.doc-table td:first-child { font-weight: 600; color: var(--dark); }
+
+/* COOKIE BADGE */
+.cookie-type {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.6rem;
+  border-radius: 100px;
+}
+.cookie-type.essential { background: rgba(34,197,94,0.1); color: #16a34a; }
+.cookie-type.analytics { background: rgba(10,92,255,0.1); color: var(--accent); }
+.cookie-type.marketing { background: rgba(245,158,11,0.1); color: #d97706; }
+.cookie-type.functional { background: rgba(139,92,246,0.1); color: #7c3aed; }
+
+/* CONTACT BOX */
+.contact-box {
+  background: var(--black);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-top: 1.5rem;
+}
+.contact-box h3 { color: var(--white); font-size: 1rem; margin-bottom: 1rem; margin-top: 0; }
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.6);
+  margin-bottom: 0.6rem;
+}
+.contact-item strong { color: var(--white); }
+.contact-item a { color: #4f8ef7; text-decoration: none; }
+.contact-item a:hover { text-decoration: underline; }
+
+/* FOOTER */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--light-gray);
+  padding: 2.5rem 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.footer-left { font-size: 0.8rem; color: var(--gray); line-height: 1.6; }
+.footer-right { font-size: 0.8rem; color: var(--accent); font-weight: 600; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .content-wrap { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .content-main { padding: 2rem 0; }
+  .tab-btn { padding: 1rem 1rem; font-size: 0.78rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="mosko-marketing.html" class="logo">Mosko <span>Marketing</span></a>
+  <a href="mosko-marketing.html" class="nav-back">← Voltar ao site</a>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero">
+  <span class="page-label">Documentos Legais</span>
+  <h1 class="page-title">Política de Privacidade, Termos de Uso e Cookies</h1>
+  <p class="page-subtitle">
+    Documentos que regem o uso dos nossos serviços, o tratamento dos seus dados pessoais e o uso de cookies em nossa plataforma.
+  </p>
+  <div class="page-meta">
+    <div class="meta-item"><strong>Empresa</strong>TRM Serviços LTDA</div>
+    <div class="meta-item"><strong>CNPJ</strong>58.169.089/0001-02</div>
+    <div class="meta-item"><strong>Última atualização</strong>Janeiro de 2025</div>
+    <div class="meta-item"><strong>Vigência</strong>A partir de 01/01/2025</div>
+  </div>
+</div>
+
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="showTab('privacidade', this)">Política de Privacidade</button>
+  <button class="tab-btn" onclick="showTab('termos', this)">Termos de Uso</button>
+  <button class="tab-btn" onclick="showTab('cookies', this)">Política de Cookies</button>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- SIDEBAR PRIVACIDADE -->
+  <aside class="sidebar" id="sidebar-privacidade">
+    <div class="sidebar-title">Nesta página</div>
+    <ul>
+      <li><a href="#priv-1">1. Introdução</a></li>
+      <li><a href="#priv-2">2. Dados coletados</a></li>
+      <li><a href="#priv-3">3. Como usamos</a></li>
+      <li><a href="#priv-4">4. Compartilhamento</a></li>
+      <li><a href="#priv-5">5. Seus direitos</a></li>
+      <li><a href="#priv-6">6. Segurança</a></li>
+      <li><a href="#priv-7">7. Retenção de dados</a></li>
+      <li><a href="#priv-8">8. Menores de idade</a></li>
+      <li><a href="#priv-9">9. Alterações</a></li>
+      <li><a href="#priv-10">10. Contato</a></li>
+    </ul>
+  </aside>
+
+  <aside class="sidebar" id="sidebar-termos" style="display:none">
+    <div class="sidebar-title">Nesta página</div>
+    <ul>
+      <li><a href="#term-1">1. Aceitação</a></li>
+      <li><a href="#term-2">2. Serviços</a></li>
+      <li><a href="#term-3">3. Obrigações do cliente</a></li>
+      <li><a href="#term-4">4. Propriedade intelectual</a></li>
+      <li><a href="#term-5">5. Pagamento</a></li>
+      <li><a href="#term-6">6. Rescisão</a></li>
+      <li><a href="#term-7">7. Limitação de responsabilidade</a></li>
+      <li><a href="#term-8">8. Foro</a></li>
+    </ul>
+  </aside>
+
+  <aside class="sidebar" id="sidebar-cookies" style="display:none">
+    <div class="sidebar-title">Nesta página</div>
+    <ul>
+      <li><a href="#cook-1">1. O que são cookies</a></li>
+      <li><a href="#cook-2">2. Tipos utilizados</a></li>
+      <li><a href="#cook-3">3. Lista de cookies</a></li>
+      <li><a href="#cook-4">4. Gerenciamento</a></li>
+      <li><a href="#cook-5">5. Cookies de terceiros</a></li>
+      <li><a href="#cook-6">6. Consentimento</a></li>
+    </ul>
+  </aside>
+
+  <!-- ══════════ PRIVACIDADE ══════════ -->
+  <main class="content-main">
+    <div class="tab-panel active" id="tab-privacidade">
+
+      <div class="doc-section" id="priv-1">
+        <span class="section-num">Seção 01</span>
+        <h2>Introdução e Identificação do Controlador</h2>
+        <p>A <strong>TRM Serviços LTDA</strong>, inscrita no CNPJ sob o nº <strong>58.169.089/0001-02</strong>, com sede na Rua Pernambuco, 1396, Monte Castelo, Campo Grande/MS, CEP 79010-040, operando sob a marca <strong>Mosko Marketing</strong>, é a controladora responsável pelo tratamento dos dados pessoais coletados por meio de seus sites, plataformas e serviços.</p>
+        <p>Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais, em conformidade com a <strong>Lei Geral de Proteção de Dados Pessoais (LGPD — Lei nº 13.709/2018)</strong> e demais normas aplicáveis.</p>
+        <div class="info-box">
+          <p><strong>Importante:</strong> Ao utilizar nossos serviços, sites ou produtos (incluindo iZchat em izchat.com.br e mosko.com.br), você concorda com os termos desta Política de Privacidade.</p>
+        </div>
+      </div>
+
+      <div class="doc-section" id="priv-2">
+        <span class="section-num">Seção 02</span>
+        <h2>Dados Pessoais Coletados</h2>
+        <p>Coletamos dados pessoais em diferentes momentos da sua interação conosco:</p>
+        <h3>Dados fornecidos diretamente por você</h3>
+        <ul>
+          <li>Nome completo e razão social (quando aplicável)</li>
+          <li>Endereço de e-mail e número de telefone (incluindo WhatsApp)</li>
+          <li>CNPJ/CPF para fins de faturamento</li>
+          <li>Endereço para emissão de documentos fiscais</li>
+          <li>Informações sobre sua empresa, segmento e objetivos de marketing</li>
+          <li>Mensagens e conteúdo enviados via formulários de contato ou WhatsApp</li>
+        </ul>
+        <h3>Dados coletados automaticamente</h3>
+        <ul>
+          <li>Endereço IP e dados de geolocalização aproximada</li>
+          <li>Tipo e versão do navegador e sistema operacional</li>
+          <li>Páginas visitadas, tempo de permanência e cliques</li>
+          <li>Origem do acesso (redes sociais, buscadores, links diretos)</li>
+          <li>Dados de interação com campanhas de anúncios (Google Ads, Meta Ads)</li>
+        </ul>
+        <h3>Dados de clientes do iZchat</h3>
+        <ul>
+          <li>Número de telefone e nome dos usuários finais que interagem via WhatsApp</li>
+          <li>Histórico de conversas para fins de melhoria do atendimento com IA</li>
+          <li>Métricas de atendimento e tempo de resposta</li>
+        </ul>
+      </div>
+
+      <div class="doc-section" id="priv-3">
+        <span class="section-num">Seção 03</span>
+        <h2>Finalidades do Tratamento</h2>
+        <p>Utilizamos seus dados pessoais para as seguintes finalidades, com base nas hipóteses legais da LGPD:</p>
+        <ul>
+          <li><strong>Execução contratual:</strong> prestação dos serviços contratados de marketing digital, desenvolvimento de sites, gestão de campanhas e plataforma iZchat</li>
+          <li><strong>Legítimo interesse:</strong> envio de comunicações sobre nossos serviços, novidades e conteúdos relevantes ao seu negócio</li>
+          <li><strong>Cumprimento de obrigação legal:</strong> emissão de notas fiscais, registros contábeis e atendimento a requisições legais</li>
+          <li><strong>Consentimento:</strong> envio de materiais de marketing e newsletters quando você optar por recebê-los</li>
+          <li><strong>Melhoria de serviços:</strong> análise de dados para aprimorar a plataforma iZchat, sites e estratégias de marketing</li>
+          <li><strong>Prevenção de fraudes:</strong> verificação de identidade e segurança das transações</li>
+        </ul>
+      </div>
+
+      <div class="doc-section" id="priv-4">
+        <span class="section-num">Seção 04</span>
+        <h2>Compartilhamento de Dados</h2>
+        <p>Seus dados poderão ser compartilhados com terceiros somente nas seguintes hipóteses:</p>
+        <ul>
+          <li><strong>Fornecedores de tecnologia:</strong> servidores, plataformas de e-mail, ferramentas de análise (Google Analytics, Meta Pixel) e provedores de API necessários à prestação dos serviços</li>
+          <li><strong>Parceiros de mídia paga:</strong> Google LLC e Meta Platforms Inc., para veiculação de campanhas publicitárias conforme contratado</li>
+          <li><strong>Escritório de contabilidade:</strong> para fins de obrigações fiscais e financeiras</li>
+          <li><strong>Autoridades públicas:</strong> quando exigido por lei, ordem judicial ou regulamentação aplicável</li>
+        </ul>
+        <div class="warn-box">
+          <p>⚠️ <strong>Não vendemos, alugamos ou cedemos seus dados pessoais a terceiros</strong> para fins comerciais próprios desses terceiros.</p>
+        </div>
+        <p>Todos os fornecedores com acesso a dados pessoais são contratualmente obrigados a tratar as informações com confidencialidade e em conformidade com a LGPD.</p>
+      </div>
+
+      <div class="doc-section" id="priv-5">
+        <span class="section-num">Seção 05</span>
+        <h2>Seus Direitos como Titular</h2>
+        <p>Conforme a LGPD (Art. 18), você tem os seguintes direitos em relação aos seus dados pessoais:</p>
+        <ul>
+          <li><strong>Confirmação e acesso:</strong> saber se tratamos seus dados e acessar as informações coletadas</li>
+          <li><strong>Correção:</strong> solicitar a atualização de dados incompletos, inexatos ou desatualizados</li>
+          <li><strong>Anonimização ou eliminação:</strong> solicitar o bloqueio ou exclusão de dados tratados com base no consentimento</li>
+          <li><strong>Portabilidade:</strong> receber seus dados em formato estruturado e de uso comum</li>
+          <li><strong>Revogação do consentimento:</strong> retirar seu consentimento a qualquer momento, sem prejuízo dos tratamentos já realizados</li>
+          <li><strong>Oposição:</strong> se opor ao tratamento realizado com base em legítimo interesse</li>
+          <li><strong>Revisão de decisões automatizadas:</strong> solicitar revisão humana de decisões tomadas exclusivamente por meios automatizados</li>
+        </ul>
+        <p>Para exercer qualquer um desses direitos, entre em contato com nosso Encarregado de Proteção de Dados (DPO) pelo e-mail <a href="/cdn-cgi/l/email-protection#1c6c6e756a7d7f75787d78795c71736f7773327f7371327e6e" style="color:var(--accent)"><span class="__cf_email__" data-cfemail="79090b100f181a101d181d1c3914160a1216571a1614571b0b">[email&#160;protected]</span></a>. Atenderemos sua solicitação em até 15 dias úteis.</p>
+      </div>
+
+      <div class="doc-section" id="priv-6">
+        <span class="section-num">Seção 06</span>
+        <h2>Segurança dos Dados</h2>
+        <p>Adotamos medidas técnicas e organizacionais adequadas para proteger seus dados pessoais contra acesso não autorizado, alteração, divulgação ou destruição, incluindo:</p>
+        <ul>
+          <li>Criptografia de dados em trânsito (SSL/TLS) e em repouso</li>
+          <li>Controle de acesso baseado em função (RBAC)</li>
+          <li>Monitoramento contínuo de acessos e atividades suspeitas</li>
+          <li>Backups regulares com armazenamento seguro</li>
+          <li>Treinamento periódico da equipe em boas práticas de segurança</li>
+        </ul>
+        <p>Em caso de incidente de segurança com potencial de risco ou dano aos titulares, comunicaremos a Autoridade Nacional de Proteção de Dados (ANPD) e os afetados no prazo estabelecido pela LGPD.</p>
+      </div>
+
+      <div class="doc-section" id="priv-7">
+        <span class="section-num">Seção 07</span>
+        <h2>Retenção de Dados</h2>
+        <p>Mantemos seus dados pessoais pelo período necessário ao cumprimento das finalidades descritas nesta política, respeitando os seguintes critérios:</p>
+        <ul>
+          <li><strong>Clientes ativos:</strong> durante toda a vigência do contrato de prestação de serviços</li>
+          <li><strong>Ex-clientes:</strong> até 5 anos após o encerramento do contrato, para fins fiscais e de cumprimento de obrigações legais</li>
+          <li><strong>Leads e contatos:</strong> até 2 anos a partir do último contato ou até a revogação do consentimento</li>
+          <li><strong>Dados de conversas iZchat:</strong> conforme configurado pelo cliente contratante da plataforma</li>
+        </ul>
+      </div>
+
+      <div class="doc-section" id="priv-8">
+        <span class="section-num">Seção 08</span>
+        <h2>Menores de Idade</h2>
+        <p>Nossos serviços são destinados exclusivamente a pessoas maiores de 18 anos ou a empresas representadas por seus responsáveis legais. Não coletamos intencionalmente dados pessoais de menores de 18 anos.</p>
+        <p>Caso identifiquemos que dados de menores foram coletados sem o consentimento adequado, procederemos com a eliminação imediata dessas informações.</p>
+      </div>
+
+      <div class="doc-section" id="priv-9">
+        <span class="section-num">Seção 09</span>
+        <h2>Alterações nesta Política</h2>
+        <p>Podemos atualizar esta Política de Privacidade periodicamente para refletir mudanças em nossas práticas, serviços ou obrigações legais. Sempre que houver alterações relevantes, iremos:</p>
+        <ul>
+          <li>Atualizar a data de "última revisão" no início do documento</li>
+          <li>Notificar clientes ativos por e-mail com pelo menos 15 dias de antecedência</li>
+          <li>Destacar as principais mudanças na página do documento</li>
+        </ul>
+        <p>O uso continuado dos nossos serviços após a vigência das alterações implica na aceitação da nova Política de Privacidade.</p>
+      </div>
+
+      <div class="doc-section" id="priv-10">
+        <span class="section-num">Seção 10</span>
+        <h2>Contato e Encarregado (DPO)</h2>
+        <p>Para dúvidas, solicitações ou exercício dos seus direitos, entre em contato:</p>
+        <div class="contact-box">
+          <h3>TRM Serviços LTDA — Mosko Marketing</h3>
+          <div class="contact-item">📍 <strong>Endereço:</strong> Rua Pernambuco, 1396 – Monte Castelo, Campo Grande/MS – CEP 79010-040</div>
+          <div class="contact-item">🏢 <strong>CNPJ:</strong> 58.169.089/0001-02</div>
+          <div class="contact-item">📧 <strong>E-mail DPO:</strong> <a href="/cdn-cgi/l/email-protection#bececcd7c8dfddd7dadfdadbfed3d1cdd5d190ddd1d390dccc"><span class="__cf_email__" data-cfemail="78080a110e191b111c191c1d3815170b1317561b1715561a0a">[email&#160;protected]</span></a></div>
+          <div class="contact-item">📲 <strong>WhatsApp:</strong> <a href="https://wa.me/5567992414371" target="_blank">(67) 9 9241-4371</a></div>
+          <div class="contact-item">🌐 <strong>Site:</strong> <a href="https://mosko.com.br" target="_blank">mosko.com.br</a></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════ TERMOS ══════════ -->
+    <div class="tab-panel" id="tab-termos">
+
+      <div class="doc-section" id="term-1">
+        <span class="section-num">Seção 01</span>
+        <h2>Aceitação dos Termos</h2>
+        <p>Estes Termos de Uso regulam a relação entre a <strong>TRM Serviços LTDA</strong> (CNPJ 58.169.089/0001-02), doravante denominada <strong>Mosko Marketing</strong>, e seus clientes, parceiros e usuários das plataformas mosko.com.br e izchat.com.br.</p>
+        <p>Ao contratar qualquer serviço, acessar nossas plataformas ou utilizar a plataforma iZchat, você concorda com estes Termos de Uso em sua totalidade. Caso não concorde com qualquer disposição, não utilize nossos serviços.</p>
+        <div class="info-box">
+          <p><strong>Estes termos constituem contrato vinculante</strong> entre você (pessoa física ou jurídica) e a Mosko Marketing. A contratação de qualquer serviço pressupõe a leitura e aceitação integral deste documento.</p>
+        </div>
+      </div>
+
+      <div class="doc-section" id="term-2">
+        <span class="section-num">Seção 02</span>
+        <h2>Descrição dos Serviços</h2>
+        <p>A Mosko Marketing oferece os seguintes serviços, sujeitos à disponibilidade e às condições específicas de cada contratação:</p>
+        <ul>
+          <li><strong>Marketing Digital:</strong> planejamento estratégico, gestão de campanhas Google Ads e Meta Ads, marketing de conteúdo e gestão de redes sociais</li>
+          <li><strong>Desenvolvimento Web:</strong> criação de sites institucionais, landing pages e portais de captura de leads, com foco em conversão e SEO</li>
+          <li><strong>Plataforma iZchat:</strong> licença de uso do sistema de atendimento via WhatsApp com inteligência artificial, múltiplos atendentes e automação de fluxos</li>
+          <li><strong>Automação e Integrações:</strong> desenvolvimento de automações customizadas, integração entre sistemas e APIs</li>
+          <li><strong>Registro de Marca INPI:</strong> assessoria e acompanhamento do processo de registro de marcas junto ao Instituto Nacional da Propriedade Industrial</li>
+          <li><strong>Geração de Leads:</strong> operação de portais de captura e qualificação de leads locais para revenda</li>
+        </ul>
+        <p>As especificidades de cada serviço, prazos, entregas e valores serão definidas em proposta comercial ou contrato individual firmado entre as partes.</p>
+      </div>
+
+      <div class="doc-section" id="term-3">
+        <span class="section-num">Seção 03</span>
+        <h2>Obrigações e Responsabilidades do Cliente</h2>
+        <p>O cliente, ao contratar nossos serviços, compromete-se a:</p>
+        <ul>
+          <li>Fornecer informações verdadeiras, completas e atualizadas sobre sua empresa, produtos e serviços</li>
+          <li>Disponibilizar materiais, acessos e aprovações necessários dentro dos prazos acordados</li>
+          <li>Utilizar a plataforma iZchat somente para fins lícitos e em conformidade com as políticas da Meta (WhatsApp Business)</li>
+          <li>Não utilizar os serviços para envio de spam, comunicações não autorizadas ou práticas abusivas</li>
+          <li>Manter sigilo sobre credenciais de acesso às plataformas e ferramentas</li>
+          <li>Efetuar os pagamentos nos prazos e condições acordados em contrato</li>
+          <li>Comunicar imediatamente qualquer uso não autorizado de contas ou credenciais</li>
+        </ul>
+        <div class="warn-box">
+          <p>⚠️ O cliente é inteiramente responsável pelo conteúdo das comunicações realizadas via iZchat com seus usuários finais, devendo observar o Código de Defesa do Consumidor, a LGPD e as políticas do WhatsApp Business.</p>
+        </div>
+      </div>
+
+      <div class="doc-section" id="term-4">
+        <span class="section-num">Seção 04</span>
+        <h2>Propriedade Intelectual</h2>
+        <h3>Materiais produzidos para o cliente</h3>
+        <p>Todo o conteúdo criado pela Mosko Marketing especificamente para o cliente (textos, layouts, artes, código-fonte de sites personalizados) será de propriedade do cliente após a quitação integral dos serviços contratados.</p>
+        <h3>Plataformas e tecnologias próprias</h3>
+        <p>A plataforma iZchat, seus algoritmos, interfaces, lógica de atendimento e integrações são de propriedade exclusiva da TRM Serviços LTDA. A contratação confere ao cliente apenas licença de uso não exclusiva e intransferível, pelo período vigente do contrato.</p>
+        <h3>Marcas e identidade visual</h3>
+        <p>As marcas "Mosko Marketing" e "iZchat" são propriedade da TRM Serviços LTDA. É vedado ao cliente reproduzir, modificar ou utilizar essas marcas sem autorização expressa e por escrito.</p>
+        <h3>Conteúdo do cliente</h3>
+        <p>O cliente garante ter os direitos necessários sobre todo o conteúdo fornecido à Mosko Marketing para uso na prestação dos serviços, isentando-a de qualquer responsabilidade por violação de direitos de terceiros.</p>
+      </div>
+
+      <div class="doc-section" id="term-5">
+        <span class="section-num">Seção 05</span>
+        <h2>Pagamento e Condições Financeiras</h2>
+        <ul>
+          <li>Os valores, formas e prazos de pagamento serão definidos em proposta comercial ou contrato específico</li>
+          <li>O não pagamento no vencimento acarretará multa de 2% sobre o valor devido, acrescida de juros de mora de 1% ao mês e correção monetária pelo IGPM</li>
+          <li>A inadimplência superior a 30 dias poderá resultar na suspensão imediata dos serviços, sem prejuízo da cobrança dos valores em aberto</li>
+          <li>Serviços de mídia paga (Google Ads, Meta Ads) são cobrados separadamente do fee de gestão, sendo o cliente responsável pelo investimento direto nas plataformas</li>
+          <li>Reembolsos serão avaliados caso a caso, considerando o estágio de execução dos serviços</li>
+        </ul>
+      </div>
+
+      <div class="doc-section" id="term-6">
+        <span class="section-num">Seção 06</span>
+        <h2>Rescisão e Encerramento</h2>
+        <p>O contrato poderá ser encerrado nas seguintes hipóteses:</p>
+        <ul>
+          <li><strong>Por acordo mútuo:</strong> mediante comunicação por escrito com antecedência mínima de 30 dias</li>
+          <li><strong>Por inadimplência:</strong> após 30 dias de atraso no pagamento, sem regularização</li>
+          <li><strong>Por violação dos termos:</strong> uso indevido dos serviços, fraude ou descumprimento de cláusulas contratuais</li>
+          <li><strong>Por iniciativa do cliente:</strong> com aviso prévio de 30 dias, sem multa, desde que todas as obrigações financeiras estejam quitadas</li>
+        </ul>
+        <p>Em caso de encerramento, o cliente terá 15 dias para exportar seus dados da plataforma iZchat. Após esse prazo, os dados poderão ser eliminados.</p>
+      </div>
+
+      <div class="doc-section" id="term-7">
+        <span class="section-num">Seção 07</span>
+        <h2>Limitação de Responsabilidade</h2>
+        <p>A Mosko Marketing não se responsabiliza por:</p>
+        <ul>
+          <li>Resultados específicos de campanhas de marketing, visto que dependem de variáveis de mercado fora do nosso controle</li>
+          <li>Interrupções de serviços de terceiros (Google, Meta, WhatsApp Business) que impactem as operações do cliente</li>
+          <li>Danos causados por uso indevido das plataformas pelo cliente ou seus usuários</li>
+          <li>Perdas indiretas, perda de receita ou danos consequentes decorrentes do uso ou impossibilidade de uso dos serviços</li>
+        </ul>
+        <p>A responsabilidade total da Mosko Marketing, em qualquer hipótese, ficará limitada ao valor pago pelo cliente nos últimos 3 meses de prestação de serviços.</p>
+      </div>
+
+      <div class="doc-section" id="term-8">
+        <span class="section-num">Seção 08</span>
+        <h2>Legislação Aplicável e Foro</h2>
+        <p>Estes Termos de Uso são regidos pelas leis brasileiras, em especial o Código Civil (Lei nº 10.406/2002), o Código de Defesa do Consumidor (Lei nº 8.078/1990), o Marco Civil da Internet (Lei nº 12.965/2014) e a LGPD (Lei nº 13.709/2018).</p>
+        <p>Fica eleito o foro da comarca de <strong>Campo Grande, Estado do Mato Grosso do Sul</strong>, para dirimir quaisquer conflitos oriundos destes Termos, com renúncia expressa a qualquer outro foro, por mais privilegiado que seja.</p>
+        <div class="contact-box">
+          <h3>Dúvidas sobre os Termos?</h3>
+          <div class="contact-item">📧 <strong>E-mail:</strong> <a href="/cdn-cgi/l/email-protection#aecdc1c0dacfdac1eec3c1ddc5c180cdc1c380ccdc"><span class="__cf_email__" data-cfemail="3b5854554f5a4f547b565448505415585456155949">[email&#160;protected]</span></a></div>
+          <div class="contact-item">📲 <strong>WhatsApp:</strong> <a href="https://wa.me/5567992414371" target="_blank">(67) 9 9241-4371</a></div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════ COOKIES ══════════ -->
+    <div class="tab-panel" id="tab-cookies">
+
+      <div class="doc-section" id="cook-1">
+        <span class="section-num">Seção 01</span>
+        <h2>O que são Cookies?</h2>
+        <p>Cookies são pequenos arquivos de texto armazenados no seu dispositivo (computador, smartphone ou tablet) quando você acessa um site. Eles permitem que o site reconheça seu dispositivo em visitas futuras e armazene informações sobre suas preferências e interações.</p>
+        <p>Além de cookies, também utilizamos tecnologias similares como <strong>pixels de rastreamento</strong>, <strong>web beacons</strong> e <strong>armazenamento local (localStorage)</strong> para fins equivalentes.</p>
+        <div class="info-box">
+          <p><strong>Nota:</strong> Cookies não contêm vírus e não podem acessar outras informações do seu dispositivo. São amplamente utilizados para melhorar a experiência de navegação e tornar os sites mais eficientes.</p>
+        </div>
+      </div>
+
+      <div class="doc-section" id="cook-2">
+        <span class="section-num">Seção 02</span>
+        <h2>Tipos de Cookies que Utilizamos</h2>
+
+        <h3>🟢 Cookies Essenciais</h3>
+        <p>Necessários para o funcionamento básico do site. Não podem ser desativados pois são imprescindíveis para que as páginas funcionem corretamente.</p>
+
+        <h3>🔵 Cookies Analíticos</h3>
+        <p>Nos ajudam a entender como os visitantes interagem com o site, quais páginas são mais acessadas e como melhorar a experiência. As informações são coletadas de forma agregada e anônima.</p>
+
+        <h3>🟡 Cookies de Marketing</h3>
+        <p>Utilizados para rastrear visitantes entre sites e exibir anúncios relevantes com base nos seus interesses. Incluem pixels do Google Ads e Meta (Facebook/Instagram).</p>
+
+        <h3>🟣 Cookies Funcionais</h3>
+        <p>Permitem que o site lembre suas preferências (como idioma ou região) para oferecer uma experiência mais personalizada. Não são estritamente necessários, mas melhoram a usabilidade.</p>
+      </div>
+
+      <div class="doc-section" id="cook-3">
+        <span class="section-num">Seção 03</span>
+        <h2>Lista de Cookies Utilizados</h2>
+
+        <table class="doc-table">
+          <thead>
+            <tr>
+              <th>Cookie</th>
+              <th>Tipo</th>
+              <th>Provedor</th>
+              <th>Finalidade</th>
+              <th>Duração</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>_session</td>
+              <td><span class="cookie-type essential">● Essencial</span></td>
+              <td>Mosko Marketing</td>
+              <td>Manutenção da sessão ativa do usuário no site</td>
+              <td>Sessão</td>
+            </tr>
+            <tr>
+              <td>csrf_token</td>
+              <td><span class="cookie-type essential">● Essencial</span></td>
+              <td>Mosko Marketing</td>
+              <td>Proteção contra ataques CSRF em formulários</td>
+              <td>Sessão</td>
+            </tr>
+            <tr>
+              <td>_ga</td>
+              <td><span class="cookie-type analytics">● Analítico</span></td>
+              <td>Google Analytics</td>
+              <td>Distingue usuários únicos para análise de tráfego</td>
+              <td>2 anos</td>
+            </tr>
+            <tr>
+              <td>_ga_*</td>
+              <td><span class="cookie-type analytics">● Analítico</span></td>
+              <td>Google Analytics 4</td>
+              <td>Persiste o estado da sessão para análise de comportamento</td>
+              <td>2 anos</td>
+            </tr>
+            <tr>
+              <td>_gid</td>
+              <td><span class="cookie-type analytics">● Analítico</span></td>
+              <td>Google Analytics</td>
+              <td>Distingue usuários para relatórios diários de audiência</td>
+              <td>24 horas</td>
+            </tr>
+            <tr>
+              <td>_fbp</td>
+              <td><span class="cookie-type marketing">● Marketing</span></td>
+              <td>Meta (Facebook)</td>
+              <td>Pixel do Facebook para rastreamento de conversões e remarketing</td>
+              <td>3 meses</td>
+            </tr>
+            <tr>
+              <td>_fbc</td>
+              <td><span class="cookie-type marketing">● Marketing</span></td>
+              <td>Meta (Facebook)</td>
+              <td>Armazena o clique em anúncios do Facebook para atribuição</td>
+              <td>2 anos</td>
+            </tr>
+            <tr>
+              <td>_gcl_au</td>
+              <td><span class="cookie-type marketing">● Marketing</span></td>
+              <td>Google Ads</td>
+              <td>Mede conversões geradas por anúncios do Google</td>
+              <td>3 meses</td>
+            </tr>
+            <tr>
+              <td>cookie_consent</td>
+              <td><span class="cookie-type functional">● Funcional</span></td>
+              <td>Mosko Marketing</td>
+              <td>Armazena suas preferências de consentimento de cookies</td>
+              <td>1 ano</td>
+            </tr>
+            <tr>
+              <td>lang_pref</td>
+              <td><span class="cookie-type functional">● Funcional</span></td>
+              <td>Mosko Marketing</td>
+              <td>Guarda preferência de idioma do visitante</td>
+              <td>6 meses</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="doc-section" id="cook-4">
+        <span class="section-num">Seção 04</span>
+        <h2>Como Gerenciar seus Cookies</h2>
+        <p>Você tem controle total sobre os cookies instalados no seu dispositivo. Existem diferentes formas de gerenciá-los:</p>
+
+        <h3>Pelo banner de consentimento</h3>
+        <p>Ao acessar nosso site pela primeira vez, você verá um banner que permite aceitar todos os cookies, apenas os essenciais ou personalizar suas preferências por categoria.</p>
+
+        <h3>Pelas configurações do navegador</h3>
+        <p>Você pode configurar seu navegador para bloquear ou excluir cookies a qualquer momento:</p>
+        <ul>
+          <li><strong>Google Chrome:</strong> Configurações → Privacidade e segurança → Cookies</li>
+          <li><strong>Mozilla Firefox:</strong> Opções → Privacidade e Segurança → Cookies</li>
+          <li><strong>Safari:</strong> Preferências → Privacidade → Cookies</li>
+          <li><strong>Microsoft Edge:</strong> Configurações → Privacidade → Cookies</li>
+        </ul>
+
+        <div class="warn-box">
+          <p>⚠️ A desativação de cookies essenciais pode impedir o funcionamento adequado de algumas funcionalidades do site. Cookies analíticos e de marketing podem ser desativados sem prejuízo à navegação.</p>
+        </div>
+
+        <h3>Opt-out das plataformas de terceiros</h3>
+        <ul>
+          <li>Google Analytics: <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style="color:var(--accent)">tools.google.com/dlpage/gaoptout</a></li>
+          <li>Meta / Facebook Ads: Configurações de privacidade do Facebook</li>
+          <li>Google Ads: <a href="https://adssettings.google.com" target="_blank" style="color:var(--accent)">adssettings.google.com</a></li>
+        </ul>
+      </div>
+
+      <div class="doc-section" id="cook-5">
+        <span class="section-num">Seção 05</span>
+        <h2>Cookies de Terceiros</h2>
+        <p>Alguns cookies em nosso site são colocados por terceiros de nossa confiança. Esses terceiros têm suas próprias políticas de privacidade e cookies:</p>
+        <ul>
+          <li><strong>Google LLC</strong> — <a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent)">Política de Privacidade do Google</a></li>
+          <li><strong>Meta Platforms Inc.</strong> — <a href="https://www.facebook.com/privacy/policy" target="_blank" style="color:var(--accent)">Política de Dados do Meta</a></li>
+        </ul>
+        <p>Não temos controle sobre os cookies definidos por essas plataformas e recomendamos que você consulte as políticas desses terceiros para mais informações.</p>
+      </div>
+
+      <div class="doc-section" id="cook-6">
+        <span class="section-num">Seção 06</span>
+        <h2>Consentimento e Atualização</h2>
+        <p>De acordo com a LGPD e as boas práticas de privacidade, solicitamos seu consentimento explícito para cookies não essenciais antes de instalá-los no seu dispositivo.</p>
+        <p>Você pode alterar suas preferências de cookies a qualquer momento clicando no ícone de configurações de privacidade disponível no rodapé do site.</p>
+        <p>Esta Política de Cookies pode ser atualizada para refletir mudanças em nossos serviços ou em exigências legais. A data da última revisão é indicada no topo deste documento.</p>
+        <div class="contact-box">
+          <h3>Dúvidas sobre cookies ou privacidade?</h3>
+          <div class="contact-item">📧 <strong>DPO:</strong> <a href="/cdn-cgi/l/email-protection#8dfdffe4fbeceee4e9ece9e8cde0e2fee6e2a3eee2e0a3efff"><span class="__cf_email__" data-cfemail="b9c9cbd0cfd8dad0ddd8dddcf9d4d6cad2d697dad6d497dbcb">[email&#160;protected]</span></a></div>
+          <div class="contact-item">📲 <strong>WhatsApp:</strong> <a href="https://wa.me/5567992414371" target="_blank">(67) 9 9241-4371</a></div>
+          <div class="contact-item">📍 <strong>Endereço:</strong> Rua Pernambuco, 1396 – Monte Castelo, Campo Grande/MS</div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">
+    © 2025 Mosko Marketing — TRM Serviços LTDA · CNPJ: 58.169.089/0001-02<br>
+    Rua Pernambuco, 1396 – Monte Castelo, Campo Grande/MS – CEP 79010-040
+  </div>
+  <div class="footer-right">mosko.com.br</div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+function showTab(id, btn) {
+  // Hide all panels
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sidebar').forEach(s => s.style.display = 'none');
+
+  // Show selected
+  document.getElementById('tab-' + id).classList.add('active');
+  document.getElementById('sidebar-' + id).style.display = 'block';
+  btn.classList.ad

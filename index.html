@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mosko Marketing — Agência de Marketing Digital com IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --black: #0d0d0d;
+  --dark: #1a1a1a;
+  --mid: #444;
+  --gray: #888;
+  --light-gray: #e8e8e8;
+  --bg: #f5f4f0;
+  --white: #ffffff;
+  --accent: #0a5cff;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--light-gray);
+  padding: 0 6%;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--black);
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--mid);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--black); }
+
+.btn-nav {
+  background: var(--black) !important;
+  color: var(--white) !important;
+  padding: 0.5rem 1.4rem !important;
+  border-radius: 100px;
+  font-weight: 600 !important;
+  font-size: 0.83rem !important;
+}
+.btn-nav:hover { background: var(--accent) !important; }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  padding: 9rem 6% 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #070b14;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=1800&auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.2;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(7,11,20,0.97) 0%, rgba(7,11,20,0.7) 50%, rgba(10,40,90,0.55) 100%);
+  z-index: 1;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background-image:
+    linear-gradient(rgba(10,92,255,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(10,92,255,0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 100%);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-orb-1 {
+  width: 600px; height: 600px;
+  background: rgba(10,92,255,0.15);
+  top: -150px; right: -100px;
+  animation: floatorb 10s ease-in-out infinite;
+}
+.hero-orb-2 {
+  width: 350px; height: 350px;
+  background: rgba(79,142,247,0.1);
+  bottom: -50px; left: 5%;
+  animation: floatorb 14s ease-in-out infinite reverse;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(120,170,255,0.85);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: up 0.7s 0.1s forwards;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 7.5vw, 7rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  color: #ffffff;
+  max-width: 900px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: up 0.7s 0.25s forwards;
+}
+.hero-title .accent { color: #4f8ef7; }
+
+.hero-bottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 3rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: up 0.7s 0.42s forwards;
+}
+
+.hero-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  max-width: 440px;
+}
+
+.hero-actions { display: flex; gap: 0.8rem; flex-shrink: 0; }
+
+@keyframes floatorb {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-40px) scale(1.06); }
+}
+
+/* BUTTONS */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--black);
+  color: var(--white);
+  padding: 0.85rem 2rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.22s;
+}
+.btn-primary:hover { background: var(--accent); transform: translateY(-2px); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: var(--black);
+  padding: 0.85rem 1.8rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1.5px solid var(--light-gray);
+  transition: all 0.22s;
+}
+.btn-outline:hover { border-color: var(--black); }
+
+.btn-outline-light {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  padding: 0.85rem 1.8rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  transition: all 0.22s;
+}
+.btn-outline-light:hover { border-color: rgba(255,255,255,0.7); color: white; }
+
+/* TICKER */
+.ticker-wrap {
+  border-top: 1px solid var(--light-gray);
+  border-bottom: 1px solid var(--light-gray);
+  padding: 1rem 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+.ticker {
+  display: flex;
+  animation: ticker 30s linear infinite;
+  width: max-content;
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0 2.5rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  white-space: nowrap;
+}
+.ticker-item::before { content: '◆'; font-size: 0.45rem; color: var(--accent); }
+
+/* SECTIONS */
+section { padding: 7rem 6%; }
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+  display: block;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 1.2rem;
+}
+
+.section-sub {
+  font-size: 1rem;
+  color: var(--mid);
+  line-height: 1.75;
+  max-width: 540px;
+}
+
+/* ABOUT */
+.about { background: var(--bg); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.about-nums {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  margin-top: 3rem;
+  background: var(--light-gray);
+}
+.about-num { background: var(--bg); padding: 2rem; }
+.about-num strong {
+  display: block;
+  font-size: 2.8rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: var(--black);
+  line-height: 1;
+}
+.about-num span {
+  font-size: 0.8rem;
+  color: var(--gray);
+  margin-top: 0.3rem;
+  display: block;
+}
+
+.about-img-box {
+  background: var(--light-gray);
+  border-radius: 4px;
+  height: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.about-img-box .big-icon { font-size: 7rem; opacity: 0.12; }
+
+.about-badge {
+  position: absolute;
+  bottom: 2rem; left: 2rem;
+  background: var(--white);
+  border-radius: 100px;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+}
+.about-badge .dot {
+  width: 8px; height: 8px;
+  background: #22c55e;
+  border-radius: 50%;
+  animation: blink 2s infinite;
+}
+
+/* SERVICES */
+.services-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--light-gray);
+}
+
+.srv {
+  background: var(--white);
+  padding: 2.8rem 2.4rem;
+  transition: background 0.25s;
+  cursor: default;
+  position: relative;
+}
+.srv:hover { background: var(--black); }
+.srv:hover .srv-title { color: var(--white); }
+.srv:hover .srv-desc { color: rgba(255,255,255,0.5); }
+.srv:hover .srv-num { color: rgba(255,255,255,0.15); }
+.srv:hover .srv-icon-wrap { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.1); }
+.srv:hover .srv-arrow { color: var(--white); opacity: 1; }
+
+.srv-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--light-gray);
+  margin-bottom: 2rem;
+  transition: color 0.25s;
+}
+.srv-icon-wrap {
+  width: 48px; height: 48px;
+  background: var(--bg);
+  border: 1px solid var(--light-gray);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.6rem;
+  font-size: 1.4rem;
+  transition: all 0.25s;
+}
+.srv-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--black);
+  margin-bottom: 0.8rem;
+  transition: color 0.25s;
+  line-height: 1.3;
+}
+.srv-desc {
+  font-size: 0.86rem;
+  color: var(--gray);
+  line-height: 1.7;
+  transition: color 0.25s;
+}
+.srv-arrow {
+  position: absolute;
+  bottom: 2.4rem; right: 2.4rem;
+  font-size: 1.2rem;
+  color: var(--light-gray);
+  opacity: 0;
+  transition: all 0.25s;
+}
+
+/* AI SECTION */
+.ai-section { background: var(--black); color: var(--white); }
+.ai-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+.ai-section .section-label { color: #4f8ef7; }
+.ai-section .section-title { color: var(--white); }
+.ai-section .section-sub { color: rgba(255,255,255,0.45); }
+
+.ai-list {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: rgba(255,255,255,0.07);
+}
+.ai-item {
+  background: var(--black);
+  padding: 1.4rem 1.6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  transition: background 0.2s;
+}
+.ai-item:hover { background: rgba(255,255,255,0.04); }
+.ai-item-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem; }
+.ai-item-title { font-weight: 600; font-size: 0.95rem; color: var(--white); margin-bottom: 0.2rem; }
+.ai-item-desc { font-size: 0.82rem; color: rgba(255,255,255,0.38); line-height: 1.6; }
+
+/* Orbit */
+.ai-visual {
+  position: relative;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orb-center {
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  position: relative;
+  z-index: 3;
+  box-shadow: 0 0 60px rgba(10,92,255,0.5);
+}
+.orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px dashed rgba(255,255,255,0.1);
+}
+.orb-ring:nth-child(1) { width: 200px; height: 200px; animation: spin 18s linear infinite; }
+.orb-ring:nth-child(2) { width: 300px; height: 300px; animation: spin 28s linear infinite reverse; }
+.orb-ring:nth-child(3) { width: 370px; height: 370px; animation: spin 40s linear infinite; }
+
+.orb-node {
+  position: absolute;
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  top: -18px; left: 50%;
+  transform: translateX(-50%);
+}
+
+/* IZCHAT */
+.izchat-section { background: var(--bg); }
+.izchat-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.feature-list {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.feat {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--dark);
+}
+.feat-check {
+  width: 20px; height: 20px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 900;
+}
+
+/* Chat window */
+.chat-window {
+  background: var(--white);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+  border: 1px solid var(--light-gray);
+}
+.chat-win-header {
+  background: var(--black);
+  padding: 1rem 1.4rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.chat-win-avatar {
+  width: 36px; height: 36px;
+  background: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: white;
+  font-weight: 800;
+}
+.chat-win-name { font-size: 0.9rem; font-weight: 600; color: white; }
+.chat-win-sub { font-size: 0.72rem; color: rgba(255,255,255,0.45); }
+
+.chat-win-body { padding: 1.4rem; display: flex; flex-direction: column; gap: 0.75rem; background: #f7f7f7; }
+
+.bubble {
+  max-width: 80%;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  font-size: 0.84rem;
+  line-height: 1.55;
+}
+.bubble-bot { background: var(--white); border: 1px solid var(--light-gray); align-self: flex-start; border-radius: 2px 14px 14px 14px; }
+.bubble-user { background: var(--accent); color: white; align-self: flex-end; border-radius: 14px 2px 14px 14px; }
+.bubble-time { font-size: 0.65rem; color: var(--gray); margin-top: 0.15rem; }
+
+.chat-typing {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0.7rem 1rem;
+  background: var(--white);
+  border: 1px solid var(--light-gray);
+  border-radius: 2px 14px 14px 14px;
+  width: fit-content;
+}
+.chat-typing span {
+  width: 5px; height: 5px;
+  background: var(--gray);
+  border-radius: 50%;
+  animation: bounce 1.2s ease-in-out infinite;
+}
+.chat-typing span:nth-child(2) { animation-delay: 0.2s; }
+.chat-typing span:nth-child(3) { animation-delay: 0.4s; }
+
+/* PROCESS */
+.process-header { text-align: center; margin-bottom: 3.5rem; }
+.process-header .section-sub { margin: 0 auto; text-align: center; }
+
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  background: var(--light-gray);
+}
+.proc { background: var(--white); padding: 2.5rem 2rem; }
+.proc-num {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  color: var(--light-gray);
+  line-height: 1;
+  margin-bottom: 1.2rem;
+}
+.proc h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+.proc p { font-size: 0.84rem; color: var(--gray); line-height: 1.65; }
+
+/* CTA */
+.cta-section {
+  background: var(--black);
+  text-align: center;
+  padding: 8rem 6%;
+}
+.cta-section .section-title { color: var(--white); max-width: 700px; margin: 0 auto 1.2rem; }
+.cta-section .section-sub { color: rgba(255,255,255,0.4); margin: 0 auto 3rem; text-align: center; }
+
+.cta-row { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+.btn-white {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--white);
+  color: var(--black);
+  padding: 0.9rem 2.2rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.22s;
+}
+.btn-white:hover { background: var(--accent); color: white; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--white);
+  padding: 0.9rem 2rem;
+  border-radius: 100px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  transition: all 0.22s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.6); }
+
+/* FOOTER */
+footer {
+  background: var(--bg);
+  border-top: 1px solid var(--light-gray);
+  padding: 4rem 6% 2rem;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--light-gray);
+  margin-bottom: 2rem;
+}
+.footer-brand p {
+  font-size: 0.86rem;
+  color: var(--gray);
+  line-height: 1.7;
+  margin-top: 0.8rem;
+  max-width: 280px;
+}
+.footer-col h5 {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  margin-bottom: 1rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+.footer-col ul li a {
+  text-decoration: none;
+  font-size: 0.86rem;
+  color: var(--gray);
+  transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--black); }
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.footer-legal { font-size: 0.78rem; color: var(--gray); line-height: 1.6; }
+.footer-site { font-size: 0.78rem; color: var(--accent); font-weight: 600; }
+
+/* ANIMATIONS */
+@keyframes up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-5px); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.on { opacity: 1; transform: none; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  .about-grid, .ai-inner, .izchat-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .services-grid { grid-template-columns: 1fr 1fr; }
+  .process-grid { grid-template-columns: 1fr 1fr; }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .services-grid, .process-grid { grid-template-columns: 1fr; }
+  .hero-bottom { flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Mosko <span>Marketing</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#izchat">iZchat</a></li>
+    <li><a href="#processo">Processo</a></li>
+    <li><a href="#contato" class="btn-nav">Orçamento</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-content">
+    <div class="hero-label">Agência de Marketing Digital · Campo Grande, MS</div>
+    <h1 class="hero-title">
+      Marketing digital<br>com <span class="accent">inteligência</span><br>artificial.
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Estratégia, tecnologia e automação com IA para empresas que querem crescer de forma inteligente e consistente.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5567992414371" class="btn-primary" target="_blank">Falar conosco →</a>
+        <a href="#servicos" class="btn-outline-light">Ver serviços</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item">Marketing Digital</div>
+    <div class="ticker-item">Inteligência Artificial</div>
+    <div class="ticker-item">Google Ads</div>
+    <div class="ticker-item">Meta Ads</div>
+    <div class="ticker-item">iZchat WhatsApp</div>
+    <div class="ticker-item">Automação</div>
+    <div class="ticker-item">Desenvolvimento de Sites</div>
+    <div class="ticker-item">Registro de Marca INPI</div>
+    <div class="ticker-item">Integrações & APIs</div>
+    <div class="ticker-item">Marketing Digital</div>
+    <div class="ticker-item">Inteligência Artificial</div>
+    <div class="ticker-item">Google Ads</div>
+    <div class="ticker-item">Meta Ads</div>
+    <div class="ticker-item">iZchat WhatsApp</div>
+    <div class="ticker-item">Automação</div>
+    <div class="ticker-item">Desenvolvimento de Sites</div>
+    <div class="ticker-item">Registro de Marca INPI</div>
+    <div class="ticker-item">Integrações & APIs</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="sobre">
+  <div class="about-grid reveal">
+    <div>
+      <span class="section-label">Sobre nós</span>
+      <h2 class="section-title">Uma agência do tamanho da sua empresa.</h2>
+      <p class="section-sub">
+        A Mosko Marketing une estratégia de marketing digital com tecnologia de ponta — IA, automação e sistemas próprios — para gerar resultados reais para empresas B2B que querem crescer com inteligência.
+      </p>
+      <div class="about-nums">
+        <div class="about-num">
+          <strong>10+</strong>
+          <span>Anos de mercado</span>
+        </div>
+        <div class="about-num">
+          <strong>24/7</strong>
+          <span>Atendimento com IA</span>
+        </div>
+        <div class="about-num">
+          <strong>B2B</strong>
+          <span>Foco empresarial</span>
+        </div>
+        <div class="about-num">
+          <strong>100%</strong>
+          <span>Foco em resultado</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="about-img-box">
+        <span class="big-icon">🚀</span>
+        <div class="about-badge">
+          <span class="dot"></span>
+          Atendendo clientes agora
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicos">
+  <div class="services-header reveal">
+    <div>
+      <span class="section-label">Nossos serviços</span>
+      <h2 class="section-title">O que fazemos</h2>
+    </div>
+    <p style="font-size:0.95rem;color:var(--mid);max-width:360px;line-height:1.65;">
+      Soluções completas de marketing digital e tecnologia para empresas que querem crescer de forma consistente.
+    </p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="srv">
+      <div class="srv-num">01</div>
+      <div class="srv-icon-wrap">🤖</div>
+      <div class="srv-title">Automação com IA</div>
+      <p class="srv-desc">Criamos fluxos automatizados com inteligência artificial para atendimento, qualificação de leads e processos internos.</p>
+      <span class="srv-arrow">→</span>
+    </div>
+    <div class="srv">
+      <div class="srv-num">02</div>
+      <div class="srv-icon-wrap">💬</div>
+      <div class="srv-title">iZchat — Chatbot no WhatsApp</div>
+      <p class="srv-desc">Sistema próprio de atendimento com IA para WhatsApp. Multi-atendentes, automação e funil de vendas integrado.</p>
+      <span class="srv-arrow">→</span>
+    </div>
+    <div class="srv">
+      <div class="srv-num">03</div>
+      <div class="srv-icon-wrap">🎯</div>
+      <div class="srv-title">Google Ads & Meta Ads</div>
+      <p class="srv-desc">Gestão estratégica de campanhas de tráfego pago com otimização contínua e foco em conversão e ROI.</p>
+      <span class="srv-arrow">→</span>
+    </div>
+    <div class="srv">
+      <div class="srv-num">04</div>
+      <div class="srv-icon-wrap">🌐</div>
+      <div class="srv-title">Desenvolvimento de Sites</div>
+      <p class="srv-desc">Sites institucionais e landing pages com foco em conversão, velocidade e posicionamento orgânico no Google.</p>
+      <span class="srv-arrow">→</span>
+    </div>
+    <div class="srv">
+      <div class="srv-num">05</div>
+      <div class="srv-icon-wrap">⚙️</div>
+      <div class="srv-title">Integrações & Automações</div>
+      <p class="srv-desc">Conectamos plataformas, CRMs, APIs e sistemas via automações inteligentes para seu negócio operar em sincronia.</p>
+      <span class="srv-arrow">→</span>
+    </div>
+    <div class="srv">
+      <div class="srv-num">06</div>
+      <div class="srv-icon-wrap">™️</div>
+      <div class="srv-title">Registro de Marca no INPI</div>
+      <p class="srv-desc">Protegemos o ativo mais valioso da sua empresa com todo o processo de registro junto ao INPI, com acompanhamento completo.</p>
+      <span class="srv-arrow">→</span>
+    </div>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section class="ai-section" id="ia">
+  <div class="ai-inner">
+    <div class="reveal">
+      <span class="section-label">Diferencial tecnológico</span>
+      <h2 class="section-title">IA no centro da sua estratégia</h2>
+      <p class="section-sub">
+        Não usamos IA como palavra da moda. Aplicamos tecnologia real para automatizar, escalar e otimizar o marketing e o atendimento da sua empresa.
+      </p>
+      <div class="ai-list">
+        <div class="ai-item">
+          <span class="ai-item-icon">⚡</span>
+          <div>
+            <div class="ai-item-title">Qualificação automática de leads</div>
+            <div class="ai-item-desc">IA identifica e prioriza oportunidades — sua equipe foca apenas nos contatos que importam.</div>
+          </div>
+        </div>
+        <div class="ai-item">
+          <span class="ai-item-icon">📊</span>
+          <div>
+            <div class="ai-item-title">Análise e otimização contínua</div>
+            <div class="ai-item-desc">Monitoramento inteligente de campanhas com ajustes baseados em dados reais, não em achismos.</div>
+          </div>
+        </div>
+        <div class="ai-item">
+          <span class="ai-item-icon">🔗</span>
+          <div>
+            <div class="ai-item-title">Integração entre plataformas</div>
+            <div class="ai-item-desc">IA conecta seus sistemas, elimina trabalho manual e garante que nenhuma oportunidade seja perdida.</div>
+          </div>
+        </div>
+        <div class="ai-item">
+          <span class="ai-item-icon">🤝</span>
+          <div>
+            <div class="ai-item-title">Atendimento 24/7 sem custo extra</div>
+            <div class="ai-item-desc">Seu cliente atendido em qualquer horário com qualidade e velocidade, sem aumentar o time.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-visual reveal">
+      <div class="orb-ring"><div class="orb-node">🎯</div></div>
+      <div class="orb-ring"><div class="orb-node">📱</div></div>
+      <div class="orb-ring"><div class="orb-node">📊</div></div>
+      <div class="orb-center">🧠</div>
+    </div>
+  </div>
+</section>
+
+<!-- IZCHAT -->
+<section class="izchat-section" id="izchat">
+  <div class="izchat-inner">
+    <div class="chat-window reveal">
+      <div class="chat-win-header">
+        <div class="chat-win-avatar">iZ</div>
+        <div>
+          <div class="chat-win-name">Assistente iZchat</div>
+          <div class="chat-win-sub">● Online — powered by IA</div>
+        </div>
+      </div>
+      <div class="chat-win-body">
+        <div>
+          <div class="bubble bubble-bot">Olá! 👋 Bem-vindo! Como posso te ajudar hoje?</div>
+          <div class="bubble-time">09:00</div>
+        </div>
+        <div style="align-self:flex-end;text-align:right">
+          <div class="bubble bubble-user">Quero saber sobre os planos disponíveis</div>
+          <div class="bubble-time">09:01</div>
+        </div>
+        <div>
+          <div class="bubble bubble-bot">Claro! Temos planos para todos os tamanhos de empresa.<br><br>
+            <b>1️⃣ Starter</b> — até 3 atendentes<br>
+            <b>2️⃣ Growth</b> — até 10 atendentes<br>
+            <b>3️⃣ Enterprise</b> — sem limite
+          </div>
+          <div class="bubble-time">09:01</div>
+        </div>
+        <div style="align-self:flex-end;text-align:right">
+          <div class="bubble bubble-user">Somos 8 pessoas no time</div>
+          <div class="bubble-time">09:02</div>
+        </div>
+        <div class="chat-typing">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="section-label">Produto próprio</span>
+      <h2 class="section-title">iZchat — Atendimento inteligente no WhatsApp</h2>
+      <p class="section-sub">
+        Plataforma própria com IA, múltiplos atendentes e automação de fluxo. Sua empresa disponível 24h por dia, 7 dias por semana.
+      </p>
+      <div class="feature-list">
+        <div class="feat"><span class="feat-check">✓</span>Atendimento automático com IA treinada para seu negócio</div>
+        <div class="feat"><span class="feat-check">✓</span>Múltiplos atendentes humanos na mesma linha</div>
+        <div class="feat"><span class="feat-check">✓</span>Métricas de atendimento em tempo real</div>
+        <div class="feat"><span class="feat-check">✓</span>Integração com CRM e sistemas de gestão</div>
+        <div class="feat"><span class="feat-check">✓</span>Funil de vendas automatizado</div>
+        <div class="feat"><span class="feat-check">✓</span>Sem limite de conversas simultâneas</div>
+      </div>
+      <div style="margin-top:2.5rem;display:flex;gap:0.8rem;flex-wrap:wrap;">
+        <a href="https://izchat.com.br" class="btn-primary" target="_blank">Acessar izchat.com.br →</a>
+        <a href="https://wa.me/5567992414371" class="btn-outline" target="_blank">Falar com especialista</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="processo">
+  <div class="process-header reveal">
+    <span class="section-label">Como trabalhamos</span>
+    <h2 class="section-title">Do diagnóstico ao resultado</h2>
+    <p class="section-sub">Um processo estruturado para garantir entregas com qualidade e alinhamento total com seus objetivos.</p>
+  </div>
+  <div class="process-grid reveal">
+    <div class="proc">
+      <div class="proc-num">01</div>
+      <h3>Diagnóstico</h3>
+      <p>Entendemos seu negócio, mercado e objetivos antes de propor qualquer solução.</p>
+    </div>
+    <div class="proc">
+      <div class="proc-num">02</div>
+      <h3>Estratégia</h3>
+      <p>Desenvolvemos um plano sob medida com os canais e tecnologias mais adequados.</p>
+    </div>
+    <div class="proc">
+      <div class="proc-num">03</div>
+      <h3>Implementação</h3>
+      <p>Executamos com agilidade: sites, campanhas, automações e integrações com qualidade.</p>
+    </div>
+    <div class="proc">
+      <div class="proc-num">04</div>
+      <h3>Resultados</h3>
+      <p>Monitoramos, otimizamos e entregamos relatórios claros de performance.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contato">
+  <span class="section-label" style="color:#4f8ef7;display:block;text-align:center;margin-bottom:1.4rem;">Próximo passo</span>
+  <h2 class="section-title">Pronto para crescer com inteligência?</h2>
+  <p class="section-sub">Vamos conversar sobre os objetivos do seu negócio e mostrar o que a Mosko Marketing pode fazer por você.</p>
+  <div class="cta-row">
+    <a href="https://wa.me/5567992414371?text=Olá!%20Quero%20saber%20mais%20sobre%20os%20serviços%20da%20Mosko%20Marketing." class="btn-white" target="_blank">📲 WhatsApp — (67) 9 9241-4371</a>
+    <a href="/cdn-cgi/l/email-protection#8ae9e5e4feebfee5cae7e5f9e1e5a4e9e5e7a4e8f8" class="btn-ghost">✉️ Enviar e-mail</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">Mosko <span>Marketing</span></a>
+      <p>Agência de marketing digital especializada em IA, automação e estratégia de crescimento B2B.</p>
+      <p style="margin-top:0.8rem;font-size:0.78rem;color:#aaa;">TRM Serviços LTDA · CNPJ: 58.169.089/0001-02</p>
+    </div>
+    <div class="footer-col">
+      <h5>Serviços</h5>
+      <ul>
+        <li><a href="#servicos">Automação com IA</a></li>
+        <li><a href="#izchat">iZchat WhatsApp</a></li>
+        <li><a href="#servicos">Google & Meta Ads</a></li>
+        <li><a href="#servicos">Desenvolvimento Web</a></li>
+        <li><a href="#servicos">Registro de Marca</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Links</h5>
+      <ul>
+        <li><a href="https://izchat.com.br" target="_blank">izchat.com.br</a></li>
+        <li><a href="https://mosko.com.br" target="_blank">mosko.com.br</a></li>
+        <li><a href="https://wa.me/5567992414371" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Endereço</h5>
+      <ul>
+        <li><a href="#">Rua Pernambuco, 1396</a></li>
+        <li><a href="#">Monte Castelo</a></li>
+        <li><a href="#">Campo Grande/MS</a></li>
+        <li><a href="#">CEP 79010-040</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-legal">© 2025 Mosko Marketing — TRM Serviços LTDA · Todos os direitos reservados.</div>
+    <div class="footer-site">mosko.com.br</div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Nav dark mode over hero
+  const heroSection = document.querySelector('.hero');
+  const navEl = document.querySelector('nav');
+  const navObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navEl.style.background = 'rgba(7,11,20,0.8)';
+        navEl.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+        navEl.querySelectorAll('.logo').forEach(l => l.style.color = '#fff');
+        navEl.querySelectorAll('.nav-links a:not(.btn-nav)').forEach(a => a.style.color = 'rgba(255,255,255,0.65)');
+        const btnNav = navEl.querySelector('.btn-nav');
+        if (btnNav) { btnNav.style.background = '#fff'; btnNav.style.color = '#0d0d0d'; }
+      } else {
+        navEl.style.background = '';
+        navEl.style.borderBottomColor = '';
+        navEl.querySelectorAll('.logo').forEach(l => l.style.color = '');
+        navEl.querySelectorAll('.nav-links a:not(.btn-nav)').forEach(a => a.style.color = '');
+        const btnNav = navEl.querySelector('.btn-nav');
+        if (btnNav) { btnNav.style.background = ''; btnNav.style.color = ''; }
+      }
+    });
+  }, { threshold: 0.1 });
+  if (heroSection) navObs.observe(heroSection);
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      e.target.classList.add('on');
+      const kids = e.target.querySelectorAll('.srv, .proc, .ai-item, .about-num');
+      kids.forEach((c, i) => {
+        c.style.opacity = 0;
+        c.style.transform = 'translateY(20px)';
+        c.style.transition = `opacity 0.5s ${i*0.08}s ease, transform 0.5s ${i*0.08}s ease`;
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          c.style.opacity = 1;
+          c.style.transform = 'none';
+        }));
+      });
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySe
