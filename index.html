@@ -748,14 +748,8 @@ footer {
 
 /* SCROLL REVEAL */
 .reveal {
-  opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-.reveal.on { opacity: 1; transform: none; }
-/* Fallback: if JS fails, still show content */
-@media (prefers-reduced-motion: reduce) {
-  .reveal { opacity: 1; transform: none; }
+  opacity: 1;
+  transform: none;
 }
 
 /* RESPONSIVE */
@@ -1148,33 +1142,15 @@ footer {
   }, { threshold: 0.1 });
   if (heroSection) navObs.observe(heroSection);
 
-  // Robust scroll reveal
-  const revealAll = () => {
-    document.querySelectorAll('.reveal:not(.on)').forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight * 0.95) {
-        el.classList.add('on');
-        el.querySelectorAll('.srv, .proc, .ai-item, .about-num, .feat').forEach((c, i) => {
-          c.style.opacity = '0';
-          c.style.transform = 'translateY(18px)';
-          c.style.transition = `opacity 0.5s ${i * 0.07}s ease, transform 0.5s ${i * 0.07}s ease`;
-          setTimeout(() => {
-            c.style.opacity = '1';
-            c.style.transform = 'none';
-          }, 60 + i * 70);
-        });
-      }
+  // Simple scroll reveal - safe version
+  const animateOnScroll = () => {
+    document.querySelectorAll('.srv, .proc, .ai-item, .about-num').forEach(el => {
+      el.style.opacity = '';
+      el.style.transform = '';
+      el.style.transition = '';
     });
   };
-
-  // Run on load, scroll and resize
-  revealAll();
-  window.addEventListener('scroll', revealAll, { passive: true });
-  window.addEventListener('resize', revealAll, { passive: true });
-  // Safety fallback: show everything after 1.5s regardless
-  setTimeout(() => {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('on'));
-  }, 1500);
+  animateOnScroll();
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
