@@ -749,10 +749,14 @@ footer {
 /* SCROLL REVEAL */
 .reveal {
   opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.on { opacity: 1; transform: none; }
+/* Fallback: if JS fails, still show content */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; }
+}
 
 /* RESPONSIVE */
 @media (max-width: 960px) {
@@ -1144,24 +1148,33 @@ footer {
   }, { threshold: 0.1 });
   if (heroSection) navObs.observe(heroSection);
 
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (!e.isIntersecting) return;
-      e.target.classList.add('on');
-      const kids = e.target.querySelectorAll('.srv, .proc, .ai-item, .about-num');
-      kids.forEach((c, i) => {
-        c.style.opacity = 0;
-        c.style.transform = 'translateY(20px)';
-        c.style.transition = `opacity 0.5s ${i*0.08}s ease, transform 0.5s ${i*0.08}s ease`;
-        requestAnimationFrame(() => requestAnimationFrame(() => {
-          c.style.opacity = 1;
-          c.style.transform = 'none';
-        }));
-      });
+  // Robust scroll reveal
+  const revealAll = () => {
+    document.querySelectorAll('.reveal:not(.on)').forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < window.innerHeight * 0.95) {
+        el.classList.add('on');
+        el.querySelectorAll('.srv, .proc, .ai-item, .about-num, .feat').forEach((c, i) => {
+          c.style.opacity = '0';
+          c.style.transform = 'translateY(18px)';
+          c.style.transition = `opacity 0.5s ${i * 0.07}s ease, transform 0.5s ${i * 0.07}s ease`;
+          setTimeout(() => {
+            c.style.opacity = '1';
+            c.style.transform = 'none';
+          }, 60 + i * 70);
+        });
+      }
     });
-  }, { threshold: 0.1 });
+  };
 
-  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  // Run on load, scroll and resize
+  revealAll();
+  window.addEventListener('scroll', revealAll, { passive: true });
+  window.addEventListener('resize', revealAll, { passive: true });
+  // Safety fallback: show everything after 1.5s regardless
+  setTimeout(() => {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('on'));
+  }, 1500);
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
